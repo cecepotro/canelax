@@ -7,7 +7,9 @@ package mx.itson.canela.ui;
 import java.util.ArrayList;
 import java.util.List;
 import mx.itson.canela.entidades.Ingrediente;
+import mx.itson.canela.entidades.Paso;
 import mx.itson.canela.entidades.Receta;
+import mx.itson.canela.entidades.Usuario;
 import mx.itson.canela.enumeradores.Dificultad;
 
 public class Main {
@@ -32,13 +34,47 @@ public class Main {
         
         receta.setIngredientes(ingredientes);
         
-        // Agregar pasos
-        // espero que lo hayan hecho 
-        // ¿sí lo hicieron?
+
+        List<Paso> pasos = new ArrayList<>();
+        
+        Paso paso1 = new Paso();
+        paso1.setOrden(1);
+        paso1.setDescripcion("Precalentar el horno a 180°");
+        pasos.add(paso1);
+        
+        Paso paso2 = new Paso();
+        paso2.setOrden(2);
+        paso2.setDescripcion("Agrega topos a la salsa y mezcla suavemente para que absorba un poco de salsa");
+        pasos.add(paso2);
+        
+        receta.setPasos(pasos);
         
         receta.setDificultad(Dificultad.INTERMEDIO);
         
+        Usuario usuario = new Usuario();
+        usuario.setNombre("Rodolfo");
+        usuario.setCorreoElectronico("rodolfoelreno@gmail.com");
+        usuario.setContrasena("hesoyam");
         
+        receta.setUsuario(usuario);
+        
+        System.out.println("*** RECETAS NESTLÉ");
+        System.out.println("Subido por " + receta.getUsuario().getNombre());
+        System.out.println(receta.getNombre());
+        System.out.println(receta.getDescripcion());
+        System.out.println("Porciones: " + receta.getNumeroPorciones());
+        System.out.println("Tiempo de preparación: " +receta.getTiempo() + " minutos");
+        
+        
+        System.out.println("Ingredientes:");
+        for(Ingrediente i : receta.getIngredientes()){
+            System.out.println("- " + i.getNombre());
+        }
+        
+        System.out.println("Pasos:");
+        for(Paso p : receta.getPasos()){
+            System.out.println(p.getOrden()+ ".- " + p.getDescripcion()) ;
+        }
         
         
     }
